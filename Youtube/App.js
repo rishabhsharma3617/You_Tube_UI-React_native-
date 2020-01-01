@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,Image, FlatList , TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import VideoItem from './components/VideoItem'
+import data from './data.json'
 export default function App() {
   return (
     <View style={styles.container}>
@@ -16,7 +18,12 @@ export default function App() {
       </View>
       </View>
       <View style={styles.body}>
-
+          <FlatList 
+          data = {data.items}
+          renderItem = {(video) => <VideoItem video={video.item} />}
+          keyExtractor = {(item) => item.id}
+          />
+          
       </View>
       <View style={styles.tabBar}>
         <TouchableOpacity style={styles.tabItem}>
@@ -82,6 +89,7 @@ const styles = StyleSheet.create({
   },
   tabTitle :  {
     fontSize : 11,
-    color : '#3C3C3C'
+    color : '#3C3C3C',
+    
   }
 });
